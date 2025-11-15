@@ -1,12 +1,19 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ft_strcpy.s                                        :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ktakamat <ktakamat@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/11/14 15:15:31 by ktakamat          #+#    #+#              #
-#    Updated: 2025/11/14 15:15:46 by ktakamat         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+			section		.txt
+			global		_ft_strcpy
 
+_ft_strcpy:
+	xor		rcx, rcx		; i = 0
+	xor		rdx, rdx		; tmp = 0
+	cmp		rsi, 0			; !rsi
+	jz		return
+	jmp		copy
+increment:
+	inc		rcx				; i++
+copy:
+	mov		dl, BYTE[rsi + rcx]
+	mov		BYTE[rdi + rcx], dl
+	cmp		dl, 0
+	jnz		increment
+return:
+	mov		rax, rdi
+	ret

@@ -3,7 +3,7 @@
 
 
 _ft_strlen:
-		mov		rax, 0			;-> size_t i = 0
+		xor		rax, rax	;-> size_t i = 0    mov		rax, 0
 		jmp		compare
 increment:
 		inc		rax				; i = 0
