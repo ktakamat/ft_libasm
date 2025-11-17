@@ -1,6 +1,6 @@
-			section	.txt
-			global	_ft_strdup
-			extern	_malloc
+section	.text
+global	ft_strdup
+extern	_malloc
 
 _ft_strdup:							; rdi = src
 			cmp		rdi, 0
@@ -12,7 +12,7 @@ len_increment:
 			inc		rcx
 len_compare:
 			cmp		BYTE [rdi + rcx], 0
-			jne		len_incremet
+			jne		len_increment
 malloc_start:
 			inc		rcx								; length++
 			push	rdi								; save src
@@ -28,4 +28,12 @@ copy_start:
 copy_increment:
 			inc		rcx
 copy_copy:
-			mov		
+			mov		dl, BYTE [rdi + rcx]
+			mov		BYTE [rax, rcx], dl
+			cmp		dl, 0
+			jnz		copy_increment
+			jmp		return
+error:
+			xor		rax, rax
+return:
+			ret

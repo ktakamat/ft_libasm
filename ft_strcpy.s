@@ -1,7 +1,7 @@
-			section		.txt
-			global		_ft_strcpy
+section	.text
+global	ft_strcpy
 
-_ft_strcpy:
+ft_strcpy:
 	xor		rcx, rcx		; i = 0
 	xor		rdx, rdx		; tmp = 0
 	cmp		rsi, 0			; !rsi
