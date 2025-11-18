@@ -2,13 +2,13 @@ section	.text
 global	ft_strcpy
 
 ft_strcpy:
-			xor		rcx, rcx		; i = 0
-			xor		rdx, rdx		; tmp = 0
-			cmp		rsi, 0			; !rsi
+			xor		rcx, rcx
+			xor		rdx, rdx
+			cmp		rsi, 0
 			jz		return
 			jmp		copy
 increment:
-			inc		rcx				; i++
+			inc		rcx
 copy:
 			mov		dl, BYTE[rsi + rcx]
 			mov		BYTE[rdi + rcx], dl

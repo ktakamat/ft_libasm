@@ -6,7 +6,7 @@
 #    By: ktakamat <ktakamat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/15 17:32:21 by ktakamat          #+#    #+#              #
-#    Updated: 2025/11/18 14:40:09 by ktakamat         ###   ########.fr        #
+#    Updated: 2025/11/18 17:32:18 by ktakamat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ OBJS		=	$(SRCS:.s=.o)
 
 NA			=	nasm
 NA_FLAGS	=	-f elf64
-CFLAGS		=	-Wall -Werror -Wextra -no-pie
+CFLAGS		=	-Wall -Werror -Wextra
 NAME		=	libasm.a
 TESTER		=	test_libasm
 MAIN_SRC	=	main.c

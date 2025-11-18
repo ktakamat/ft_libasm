@@ -2,7 +2,7 @@ section	.text
 global	ft_strdup
 extern	malloc
 
-ft_strdup:							; rdi = src
+ft_strdup:
 			cmp		rdi, 0
 			jz		error
 len_start:
@@ -14,11 +14,11 @@ len_compare:
 			cmp		BYTE [rdi + rcx], 0
 			jne		len_increment
 malloc_start:
-			inc		rcx				; length++
-			push	rdi				; save src
+			inc		rcx
+			push	rdi
 			mov		rdi, rcx
-			call	malloc			; rax = malloc(lngth)
-			pop		rdi				; restore malloc
+			call	malloc wrt ..plt
+			pop		rdi
 			cmp		rax, 0
 			jz		error
 copy_start:

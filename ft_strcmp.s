@@ -1,34 +1,34 @@
 section .text
 global  ft_strcmp
 
-ft_strcmp:									;s1 = rdi, s2 = rsi
-			xor		rcx, rcx				; i = 0
-			xor		rdx, rdx				; cmp = 0
-			cmp		rdi, 0					; !s1
+ft_strcmp:
+			xor		rcx, rcx
+			xor		rdx, rdx
+			cmp		rdi, 0
 			jz		check_null
-			cmp		rsi, 0					; !s2
+			cmp		rsi, 0
 			jz		check_null
 			jmp		check
 check_null:
 			cmp		rdi, rsi
-			jz		equal					; s1 == s2 (NULL)
-			jg		s1_greater				; s1 == NULL
-			jmp		s1_less					; s2 == NULL
+			jz		equal
+			jg		s1_greater
+			jmp		s1_less
 cmopare:
-			mov		dl, BYTE [rsi + rcx]	; tmp = s2[i]
-			cmp		BYTE [rdi + rcx], dl	; s1[i] == tmp
+			mov		dl, BYTE [rsi + rcx]
+			cmp		BYTE [rdi + rcx], dl
 			jne		last_char
 increment:
 			inc		rcx
 check:
-			cmp		BYTE [rdi + rcx], 0		; !s1[i]
+			cmp		BYTE [rdi + rcx], 0
 			je		last_char
-			cmp		BYTE [rsi + rcx], 0		; !s2[i]
+			cmp		BYTE [rsi + rcx], 0
 			je		last_char
 			jmp		cmopare
 last_char:
-			mov		dl, BYTE [rdi + rcx]	; cmp = s1[i]
-			sub		dl, BYTE [rsi + rcx]	; cmp -= s2[i]
+			mov		dl, BYTE [rdi + rcx]
+			sub		dl, BYTE [rsi + rcx]
 			cmp		dl, 0
 			jz		equal
 			jl		s1_less

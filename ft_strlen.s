@@ -3,12 +3,12 @@ global	ft_strlen
 
 
 ft_strlen:
-			xor		rax, rax	;-> size_t i = 0    mov		rax, 0
+			xor		rax, rax
 			jmp		compare
 increment:
-			inc		rax				; i = 0
+			inc		rax
 compare:
-			cmp		BYTE[rdi + rax], 0 ; if (str[i] == 0)
+			cmp		BYTE[rdi + rax], 0
 			jne 	increment
 done:
-			ret						; return i
+			ret

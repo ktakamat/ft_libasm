@@ -5,14 +5,17 @@ extern	__errno_location
 ft_read:
 			mov		rax, 0 
 			syscall
-			cmp		rax, 0
-			jl		handle_error
-			ret
-handle_error:
-			neg		rax
-			push	rax
-			call	__errno_location wrt ..plt
-			pop		rdx
-			mov		[rax], rdx
-			mov		rax, -1
-			ret
+			cmp     rax, 0
+    		jge     is_success
+
+    		neg     rax
+    		mov     rdi, rax
+    		call    __errno_location wrt ..plt
+    
+			mov     [rax], rdi
+    
+    		mov     rax, -1
+    		ret
+
+is_success:
+    		ret
