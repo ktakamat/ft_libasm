@@ -6,7 +6,7 @@
 /*   By: ktakamat <ktakamat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 15:15:56 by ktakamat          #+#    #+#             */
-/*   Updated: 2025/11/18 15:06:56 by ktakamat         ###   ########.fr       */
+/*   Updated: 2025/11/18 17:02:56 by ktakamat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ void test_write()
     char *msg1 = "Hello from ft_write to stdout\n";
     ssize_t ret_ft, ret_std;
 
-    printf("Writing to stdout (fd=1):\n");
     printf("ft_write: ");
     fflush(stdout);
     ret_ft = ft_write(1, msg1, strlen(msg1));
@@ -122,7 +121,6 @@ void test_write()
     printf(ret_ft == ret_std ? "%s[OK]\n%s" : "%s[KO]\n%s", GREEN, RESET);
     printf("------------------------\n");
 }
-
 
 void test_read()
 {
@@ -158,7 +156,6 @@ void test_read()
     printf("------------------------\n");
 }
 
-
 void test_strdup()
 {
     printf("%s--- Testing ft_strdup ---\n%s", YELLOW, RESET);
@@ -181,7 +178,6 @@ void test_strdup()
         i++;
     }
 }
-
 
 int main(void)
 {

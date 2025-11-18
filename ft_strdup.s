@@ -14,11 +14,11 @@ len_compare:
 			cmp		BYTE [rdi + rcx], 0
 			jne		len_increment
 malloc_start:
-			inc		rcx								; length++
-			push	rdi								; save src
+			inc		rcx				; length++
+			push	rdi				; save src
 			mov		rdi, rcx
-			call	malloc							; rax = malloc(lngth)
-			pop		rdi								; restore malloc
+			call	malloc			; rax = malloc(lngth)
+			pop		rdi				; restore malloc
 			cmp		rax, 0
 			jz		error
 copy_start:
