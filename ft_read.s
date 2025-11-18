@@ -1,7 +1,7 @@
 section	.text
 global	ft_read
 
-_ft_read:					;fd = rdi, buffer = rsi, bytes = rdx
+ft_read:					;fd = rdi, buffer = rsi, bytes = rdx
 			mov		rax, 0
 			syscall
 			ret

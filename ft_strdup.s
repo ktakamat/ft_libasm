@@ -1,8 +1,8 @@
 section	.text
 global	ft_strdup
-extern	_malloc
+extern	malloc
 
-_ft_strdup:							; rdi = src
+ft_strdup:							; rdi = src
 			cmp		rdi, 0
 			jz		error
 len_start:
@@ -17,7 +17,7 @@ malloc_start:
 			inc		rcx								; length++
 			push	rdi								; save src
 			mov		rdi, rcx
-			call	_malloc							; rax = _malloc(lngth)
+			call	malloc							; rax = malloc(lngth)
 			pop		rdi								; restore malloc
 			cmp		rax, 0
 			jz		error
@@ -29,7 +29,7 @@ copy_increment:
 			inc		rcx
 copy_copy:
 			mov		dl, BYTE [rdi + rcx]
-			mov		BYTE [rax, rcx], dl
+			mov		BYTE [rax + rcx], dl
 			cmp		dl, 0
 			jnz		copy_increment
 			jmp		return

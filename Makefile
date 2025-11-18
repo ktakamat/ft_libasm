@@ -6,7 +6,7 @@
 #    By: ktakamat <ktakamat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/15 17:32:21 by ktakamat          #+#    #+#              #
-#    Updated: 2025/11/17 16:01:31 by ktakamat         ###   ########.fr        #
+#    Updated: 2025/11/18 14:40:09 by ktakamat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,29 +15,37 @@ OBJS		=	$(SRCS:.s=.o)
 
 NA			=	nasm
 NA_FLAGS	=	-f elf64
-FLAGS 		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra -no-pie
 NAME		=	libasm.a
-# TEST		=	TEST
+TESTER		=	test_libasm
+MAIN_SRC	=	main.c
+CC			=	gcc
 
-%.o:			%.s
-				$(NA) $(NA_FLAGS) $<
 
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
 				ar rcs $(NAME) $(OBJS)
+
+%.o:			%.s
+				$(NA) $(NA_FLAGS) $< -o $@
+
+test:			re_test
+
+$(TESTER):		$(NAME)
+				$(CC) $(CFLAGS) $(MAIN_SRC) -o $(TESTER) -L. -lasm
+
+run_test:		$(TESTER)
+				./$(TESTER)
+
+re_test:		re $(TESTER) run_test
 				
 clean:
 				rm -rf $(OBJS)
 
 fclean:			clean
-				rm -rf $(NAME)
-# 				$(TEST)
+				rm -rf $(NAME) $(TESTER)
 
 re:				fclean all
 
-# test:			$(NAME)
-# 				gcc $(FLAGS) -L. -lasm -o $(TEST) main.c
-# 				./$(TEST) < Makefile
-				
-.PHONY:			all clean fclean re
+.PHONY:			all clean fclean re test run_test re_test
